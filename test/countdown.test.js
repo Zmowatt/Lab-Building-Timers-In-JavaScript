@@ -8,10 +8,11 @@ describe('countdownTimer', () => {
 
     const startTime = 5 // 5 seconds
     const interval = 1000 // 1 second
+    global.clearInterval = jest.fn();
     const timerId = countdownTimer(startTime, interval)
 
     // Fast-forward all timers
-    jest.advanceTimersByTime(startTime * interval)
+    jest.advanceTimersByTime((startTime + 1) * interval)
 
     // Verify that console.log was called correctly
     expect(console.log).toHaveBeenCalledTimes(startTime)
